@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Matte Monster"
 run/main_scene="res://World.tscn"
+boot_splash/bg_color=Color( 0, 0.117647, 0.231373, 1 )
 config/icon="res://icon.png"
 
 [display]
@@ -25,7 +26,7 @@ window/size/width=640
 window/size/height=1024
 window/handheld/orientation="portrait"
 window/stretch/mode="2d"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [rendering]
 

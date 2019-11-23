@@ -14,6 +14,8 @@ var tasks_is_double = []
 var tasks_is_first = []
 
 func _ready() -> void:
+    $RightAudioPlayer.stream.loop = false
+    $WrongAudioPlayer.stream.loop = false
     keyboard.connect("pressed", self, "_on_keypress")
     
     # Create tasks
@@ -95,3 +97,9 @@ func _on_keypress(v : int) -> void:
         animationPlayer.play("wrong")
         yield(animationPlayer, "animation_finished")
         answerLabel.text = "?"
+
+func play_right():
+	$RightAudioPlayer.play()
+	
+func play_wrong():
+	$WrongAudioPlayer.play()

@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://PermanentMarker-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://controls/Keyboard.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sounds/right.ogg" type="AudioStream" id=4]
+[ext_resource path="res://sounds/wrong.ogg" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 36
@@ -30,6 +32,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0, 0.117647, 0.231373, 1 ), Color( 0, 1, 0, 1 ), Color( 0, 1, 0, 1 ), Color( 0, 0.117647, 0.231373, 1 ) ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_right"
+} ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "wrong"
@@ -44,6 +60,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0.117647, 0.231373, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0, 0.117647, 0.231373, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_wrong"
+} ]
 }
 
 [node name="Node2D" type="Node2D"]
@@ -128,3 +158,9 @@ margin_bottom = 984.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/right = SubResource( 4 )
 anims/wrong = SubResource( 5 )
+
+[node name="RightAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="WrongAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
