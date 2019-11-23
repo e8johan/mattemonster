@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://controls/Keyboard.gd" type="Script" id=1]
-[ext_resource path="res://PermanentMarker-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Montserrat-Medium.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -18,109 +18,120 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
-margin_right = 620.0
+margin_right = 720.0
 margin_bottom = 120.0
-columns = 5
+columns = 6
 
 [node name="Button0" type="Button" parent="VBoxContainer/GridContainer"]
-margin_right = 120.0
+margin_right = 100.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 120, 120 )
+rect_min_size = Vector2( 100, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "0"
 flat = true
 
 [node name="Button1" type="Button" parent="VBoxContainer/GridContainer"]
-margin_left = 124.0
-margin_right = 244.0
+margin_left = 104.0
+margin_right = 204.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 120, 120 )
+rect_min_size = Vector2( 100, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "1"
 flat = true
 
 [node name="Button2" type="Button" parent="VBoxContainer/GridContainer"]
-margin_left = 248.0
-margin_right = 368.0
+margin_left = 208.0
+margin_right = 308.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 120, 120 )
+rect_min_size = Vector2( 100, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "2"
 flat = true
 
 [node name="Button3" type="Button" parent="VBoxContainer/GridContainer"]
-margin_left = 372.0
-margin_right = 492.0
+margin_left = 312.0
+margin_right = 412.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 120, 120 )
+rect_min_size = Vector2( 100, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "3"
 flat = true
 
 [node name="Button4" type="Button" parent="VBoxContainer/GridContainer"]
-margin_left = 496.0
-margin_right = 616.0
+margin_left = 416.0
+margin_right = 516.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 120, 120 )
+rect_min_size = Vector2( 100, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "4"
 flat = true
 
-[node name="GridContainer2" type="GridContainer" parent="VBoxContainer"]
-margin_top = 124.0
+[node name="Button5" type="Button" parent="VBoxContainer/GridContainer"]
+margin_left = 520.0
 margin_right = 620.0
-margin_bottom = 244.0
-columns = 6
-
-[node name="Button5" type="Button" parent="VBoxContainer/GridContainer2"]
-margin_right = 100.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 100, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "5"
 flat = true
 
+[node name="GridContainer2" type="GridContainer" parent="VBoxContainer"]
+margin_top = 124.0
+margin_right = 720.0
+margin_bottom = 244.0
+columns = 5
+
 [node name="Button6" type="Button" parent="VBoxContainer/GridContainer2"]
-margin_left = 104.0
-margin_right = 204.0
+margin_right = 120.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 100, 120 )
+rect_min_size = Vector2( 120, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "6"
 flat = true
 
 [node name="Button7" type="Button" parent="VBoxContainer/GridContainer2"]
-margin_left = 208.0
-margin_right = 308.0
+margin_left = 124.0
+margin_right = 244.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 100, 120 )
+rect_min_size = Vector2( 120, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "7"
 flat = true
 
 [node name="Button8" type="Button" parent="VBoxContainer/GridContainer2"]
-margin_left = 312.0
-margin_right = 412.0
+margin_left = 248.0
+margin_right = 368.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 100, 120 )
+rect_min_size = Vector2( 120, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "8"
 flat = true
 
 [node name="Button9" type="Button" parent="VBoxContainer/GridContainer2"]
-margin_left = 416.0
-margin_right = 516.0
+margin_left = 372.0
+margin_right = 492.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 100, 120 )
+rect_min_size = Vector2( 120, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "9"
 flat = true
 
 [node name="Button10" type="Button" parent="VBoxContainer/GridContainer2"]
-margin_left = 520.0
-margin_right = 620.0
+margin_left = 496.0
+margin_right = 616.0
 margin_bottom = 120.0
-rect_min_size = Vector2( 100, 120 )
+rect_min_size = Vector2( 120, 120 )
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 text = "10"
 flat = true

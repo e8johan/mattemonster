@@ -8,7 +8,7 @@ func _ready():
     _connect_button($VBoxContainer/GridContainer/Button2)
     _connect_button($VBoxContainer/GridContainer/Button3)
     _connect_button($VBoxContainer/GridContainer/Button4)
-    _connect_button($VBoxContainer/GridContainer2/Button5)
+    _connect_button($VBoxContainer/GridContainer/Button5)
     _connect_button($VBoxContainer/GridContainer2/Button6)
     _connect_button($VBoxContainer/GridContainer2/Button7)
     _connect_button($VBoxContainer/GridContainer2/Button8)
