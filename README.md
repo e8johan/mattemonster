@@ -1,6 +1,7 @@
 # The Matte Monster
 
 *Made available under the 3-Clause BSD License
+
 Copyright 2019 (C) Johan Thelin*
 
 Matte Monster is a maths app for first graders. Currently it includes the following exercises:
@@ -11,6 +12,7 @@ Matte Monster is a maths app for first graders. Currently it includes the follow
 ## License
 
 The Matte Monster is available under the 3-Clause BSD License
+
 Copyright 2019 (C) Johan Thelin
 
 *Exceptions are listed below.*
