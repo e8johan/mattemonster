@@ -4,7 +4,8 @@ signal play
 signal quit
 
 func _ready() -> void:
-    pass
+    if OS.get_name() == "HTML5":
+        $MarginContainer/VBoxContainer/ExitButton.visible = false
 
 func _on_PlayButton_pressed():
     emit_signal("play")
