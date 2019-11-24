@@ -1,5 +1,7 @@
 extends Node2D
 
+signal game_ended
+
 onready var questionLabel = $UI/VBoxContainer/QuestionLabel
 onready var answerLabel = $UI/VBoxContainer/AnswerLabel
 onready var progressLabel = $UI/VBoxContainer/MarginContainer/HBoxContainer/ProgressLabel
@@ -18,6 +20,7 @@ func _ready() -> void:
     $WrongAudioPlayer.stream.loop = false
     keyboard.connect("pressed", self, "_on_keypress")
     
+func start_game() -> void:
     # Create tasks
     for i in range(11):
         tasks_value.append(i)
@@ -50,9 +53,9 @@ func _ready() -> void:
         tasks_is_first.insert(0, f)
 
     # Start first game
-    start_game()
+    _start_game()
         
-func start_game() -> void:
+func _start_game() -> void:
     startLen = len(tasks_value)
     _try_next_game()
 
@@ -92,7 +95,7 @@ func _on_keypress(v : int) -> void:
         animationPlayer.play("right")
         yield(animationPlayer, "animation_finished")
         if not _try_next_game():
-            get_tree().quit()
+            emit_signal("game_ended", [0, 0, 0])
     else:
         animationPlayer.play("wrong")
         yield(animationPlayer, "animation_finished")

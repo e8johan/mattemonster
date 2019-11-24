@@ -18,7 +18,7 @@ _global_script_class_icons={
 config/name="Matte Monster"
 run/main_scene="res://Game.tscn"
 boot_splash/bg_color=Color( 0, 0.117647, 0.231373, 1 )
-config/icon="res://icon.png"
+config/icon="res://images/logo-large.png"
 
 [display]
 
@@ -30,4 +30,5 @@ window/stretch/aspect="keep"
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0.117647, 0.231373, 1 )
 environment/default_environment="res://default_env.tres"
