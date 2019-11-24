@@ -10,7 +10,8 @@ func _ready() -> void:
     
     _show_view(MENU)
 
-func _end_game() -> void:
+func _end_game(seconds : int, total : int, wrong : int) -> void:
+    print("end game found")
     _show_view(MENU)
     
 func _play() -> void:
@@ -24,7 +25,6 @@ func _show_view(v) -> void:
         MENU:
             $Menu.visible = true
             $GameView.visible = false
-
         GAME:
             $Menu.visible = false
             $GameView.visible = true

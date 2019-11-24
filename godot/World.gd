@@ -1,6 +1,6 @@
 extends Node2D
 
-signal game_ended
+signal game_ended(seconds, total, wrong)
 
 onready var questionLabel = $UI/VBoxContainer/QuestionLabel
 onready var answerLabel = $UI/VBoxContainer/AnswerLabel
@@ -10,6 +10,7 @@ onready var animationPlayer = $AnimationPlayer
 
 var answer : int
 var startLen : int
+var wrongAnswers : int
 
 var tasks_value = []
 var tasks_is_double = []
@@ -29,7 +30,7 @@ func start_game() -> void:
         tasks_value.append(i)
         tasks_is_double.append(false)
         tasks_is_first.append(false)
-        if i <= 5:
+        if i <= 5 and i != 0:
             tasks_value.append(i)
             tasks_is_double.append(true)
             tasks_is_first.append(false)     # Don't care, but needed to keep indexes in line
@@ -57,6 +58,7 @@ func start_game() -> void:
         
 func _start_game() -> void:
     startLen = len(tasks_value)
+    wrongAnswers = 0
     _try_next_game()
 
 func _try_next_game() -> bool:
@@ -95,8 +97,10 @@ func _on_keypress(v : int) -> void:
         animationPlayer.play("right")
         yield(animationPlayer, "animation_finished")
         if not _try_next_game():
-            emit_signal("game_ended", [0, 0, 0])
+            print("GAME ENDED")
+            emit_signal("game_ended", 0, startLen, 0) # seconds, total, wrong
     else:
+        wrongAnswers += 1
         animationPlayer.play("wrong")
         yield(animationPlayer, "animation_finished")
         answerLabel.text = "?"
