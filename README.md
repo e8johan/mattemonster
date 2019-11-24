@@ -3,6 +3,8 @@
 *Made available under the 3-Clause BSD License<br />
 Copyright 2019 (C) Johan Thelin*
 
+![](godot/images/logo-large.png?raw=true)
+
 Matte Monster is a maths app for first graders. Currently it includes the following exercises:
 
 - Friends of ten (0+10, 1+9, ...)
