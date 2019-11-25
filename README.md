@@ -1,18 +1,18 @@
-# The Matte Monster
+# The Mattemonster
 
 *Made available under the 3-Clause BSD License<br />
 Copyright 2019 (C) Johan Thelin*
 
 ![](godot/images/logo-large.png?raw=true)
 
-Matte Monster is a maths app for first graders. Currently it includes the following exercises:
+Mattemonster is a maths app for first graders. Currently it includes the following exercises:
 
 - Friends of ten (0+10, 1+9, ...)
 - Doubles up to 5 (1+1, 2+2, ...)
 
 ## License
 
-The Matte Monster is available under the 3-Clause BSD License<br />
+The Mattemonster is available under the 3-Clause BSD License<br />
 Copyright 2019 (C) Johan Thelin
 
 *Exceptions are listed below.*
