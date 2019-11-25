@@ -86,7 +86,6 @@ rect_min_size = Vector2( 640, 1024 )
 color = Color( 0, 0.117647, 0.231373, 1 )
 
 [node name="UI" type="Control" parent="."]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 640, 1024 )
