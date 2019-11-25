@@ -159,8 +159,8 @@ margin_bottom = 983.0
 anims/right = SubResource( 4 )
 anims/wrong = SubResource( 5 )
 
-[node name="RightAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="RightAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
-[node name="WrongAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="WrongAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
