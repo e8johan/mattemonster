@@ -19,4 +19,4 @@ func _connect_button(button : Button) -> void:
     button.connect("pressed", self, "_on_button_pressed", [ button ])
 
 func _on_button_pressed(source : Button) -> void:
-    emit_signal("pressed", int(source.text))
+    emit_signal("pressed", int(source.text), source.text)

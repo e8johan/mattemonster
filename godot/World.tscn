@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://World.gd" type="Script" id=1]
 [ext_resource path="res://Montserrat-Medium.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://controls/Keyboard.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sounds/right.ogg" type="AudioStream" id=4]
-[ext_resource path="res://sounds/wrong.ogg" type="AudioStream" id=5]
+[ext_resource path="res://controls/CompareKeyboard.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sounds/right.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sounds/wrong.ogg" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 36
@@ -17,6 +18,8 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=3]
 size = 96
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
 
 [sub_resource type="Animation" id=4]
 resource_name = "right"
@@ -129,7 +132,7 @@ valign = 1
 [node name="QuestionLabel" type="Label" parent="UI/VBoxContainer"]
 margin_top = 49.0
 margin_right = 640.0
-margin_bottom = 372.0
+margin_bottom = 360.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
@@ -138,9 +141,9 @@ align = 1
 valign = 1
 
 [node name="AnswerLabel" type="Label" parent="UI/VBoxContainer"]
-margin_top = 376.0
+margin_top = 364.0
 margin_right = 640.0
-margin_bottom = 699.0
+margin_bottom = 675.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 3 )
@@ -148,19 +151,25 @@ text = "#"
 align = 1
 valign = 1
 
-[node name="Keyboard" parent="UI/VBoxContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 703.0
+[node name="TabContainer" type="TabContainer" parent="UI/VBoxContainer"]
+margin_top = 679.0
 margin_right = 640.0
 margin_bottom = 983.0
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 6 )
+tabs_visible = false
+
+[node name="Keyboard" parent="UI/VBoxContainer/TabContainer" instance=ExtResource( 3 )]
+
+[node name="CompareKeyboard" parent="UI/VBoxContainer/TabContainer" instance=ExtResource( 4 )]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/right = SubResource( 4 )
 anims/wrong = SubResource( 5 )
 
 [node name="RightAudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 
 [node name="WrongAudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )

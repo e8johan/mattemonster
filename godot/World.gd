@@ -5,100 +5,73 @@ signal game_ended(seconds, total, wrong)
 onready var questionLabel = $UI/VBoxContainer/QuestionLabel
 onready var answerLabel = $UI/VBoxContainer/AnswerLabel
 onready var progressLabel = $UI/VBoxContainer/MarginContainer/HBoxContainer/ProgressLabel
-onready var keyboard = $UI/VBoxContainer/Keyboard
+onready var numberKeyboard = $UI/VBoxContainer/TabContainer/Keyboard
+onready var compareKeyboard = $UI/VBoxContainer/TabContainer/CompareKeyboard
+onready var keyboardSelector = $UI/VBoxContainer/TabContainer
 onready var animationPlayer = $AnimationPlayer
 
-var answer : int
-var startLen : int
-var wrongAnswers : int
+var exercise : Object
+var noOfExercises: int = 0
+var wrongAnswers : int = 0
 
-var tasks_value = []
-var tasks_is_double = []
-var tasks_is_first = []
+var exercises = []
 
 func _ready() -> void:
     $RightAudioPlayer.stream.loop = false
     $WrongAudioPlayer.stream.loop = false
-    keyboard.connect("pressed", self, "_on_keypress")
+    numberKeyboard.connect("pressed", self, "_on_keypress")
+    compareKeyboard.connect("pressed", self, "_on_keypress")
     
 func start_game() -> void:
-    # Create tasks
-    for i in range(11):
-        tasks_value.append(i)
-        tasks_is_double.append(false)
-        tasks_is_first.append(true)
-        tasks_value.append(i)
-        tasks_is_double.append(false)
-        tasks_is_first.append(false)
-        if i <= 5 and i != 0:
-            tasks_value.append(i)
-            tasks_is_double.append(true)
-            tasks_is_first.append(false)     # Don't care, but needed to keep indexes in line
+    # Create exercises
+    for i in range(10):
+        exercises.append(random_exercise_factory())
 
     # Randomize task order
     var rng = RandomNumberGenerator.new()
     rng.randomize()
-    for i in range(100):
-        var r : int = rng.randi_range(0, len(tasks_value)-1)
+    for i in range(1000):
+        var r : int = rng.randi_range(0, len(exercises)-1)
+        var t : int = exercises[r]
+
+        exercises.remove(r)
         
-        var v : int = tasks_value[r]
-        var d : bool = tasks_is_double[r]
-        var f : bool = tasks_is_first[r]
-        
-        tasks_value.remove(r)
-        tasks_is_double.remove(r)
-        tasks_is_first.remove(r)
-        
-        tasks_value.insert(0, v)
-        tasks_is_double.insert(0, d)
-        tasks_is_first.insert(0, f)
+        exercises.insert(0, t)
 
     # Start first game
     _start_game()
         
 func _start_game() -> void:
-    startLen = len(tasks_value)
+    noOfExercises = len(exercises)
     wrongAnswers = 0
     _try_next_game()
 
 func _try_next_game() -> bool:
-    if len(tasks_value) == 0:
+    if len(exercises) == 0:
         return false
     else:
-        var v : int = tasks_value[0]
-        var d : bool = tasks_is_double[0]
-        var f : bool = tasks_is_first[0]
-        
-        tasks_value.remove(0)
-        tasks_is_double.remove(0)
-        tasks_is_first.remove(0)
-        
-        _prepare_task(v, d, f)
+        var e = exercises[0]
+        exercises.remove(0)
+        _prepare_task(e)
         
         return true
 
-func _prepare_task(v: int, is_double: bool, is_first: bool) -> void:
-    progressLabel.text = str(startLen - len(tasks_value) - 1) + " / " + str(startLen)    
+func _prepare_task(e) -> void:
+    progressLabel.text = str(noOfExercises - len(exercises) - 1) + " / " + str(noOfExercises)
     answerLabel.text = "?"
     
-    if is_double:
-        questionLabel.text = str(v) + " + " + str(v)
-        answer = v*2
-    else:
-        if is_first:
-            questionLabel.text = str(v) + " + _ = 10"
-        else:
-            questionLabel.text = "_ + " + str(v) + " = 10"
-        answer = 10-v
+    keyboardSelector.set_current_tab(e.keyboard_index())
+    questionLabel.text = e.question_text()
+    exercise = e
 
-func _on_keypress(v : int) -> void:
-    answerLabel.text = str(v)
-    if v == answer:
+func _on_keypress(v : int, t : String) -> void:
+    answerLabel.text = t
+    if exercise.is_answer_correct(v, t):
         animationPlayer.play("right")
         yield(animationPlayer, "animation_finished")
         if not _try_next_game():
             print("GAME ENDED")
-            emit_signal("game_ended", 0, startLen, wrongAnswers) # seconds, total, wrong
+            emit_signal("game_ended", 0, noOfExercises, wrongAnswers) # seconds, total, wrong
     else:
         wrongAnswers += 1
         animationPlayer.play("wrong")
@@ -110,3 +83,95 @@ func play_right():
 	
 func play_wrong():
 	$WrongAudioPlayer.play()
+
+#interface Exercise:
+#    func init_random() -> void
+#    func keyboard_index() -> int:
+#    func question_text() -> String:
+#    func is_answer_correct(v : int, t : String) -> bool:
+
+func random_exercise_factory() -> Object:
+    var res
+    var rng : = RandomNumberGenerator.new()
+    rng.randomize()
+    match rng.randi_range(0,10):
+        0, 1, 2, 3, 4:
+            res = ExerciseTenFriends.new()
+        5, 6:
+            res = ExerciseDouble.new()
+        7, 8, 9, 10:
+            res = ExerciseCompare.new()
+    res.init_random()
+    return res
+
+class ExerciseTenFriends:
+    var _v : int = 0
+    var _f : bool = false
+    
+    func init(value : int, is_first : bool) -> void:
+        _v = value
+        _f = is_first
+    
+    func init_random() -> void:
+        var rng : = RandomNumberGenerator.new()
+        rng.randomize()
+        self.init(rng.randi_range(0, 10), rng.randi_range(0, 1) == 0)
+    
+    func keyboard_index() -> int:
+        return 0
+    
+    func question_text() -> String:
+        if _f:
+            return "_ + " + str(_v) + " = 10"
+        else:
+            return str(_v) + " + _ = 10"
+    
+    func is_answer_correct(v : int, t : String) -> bool:
+        return (v == 10 - _v)
+
+class ExerciseDouble:
+    var _v : int = 0
+    
+    func init(value : int) -> void:
+        _v = value
+    
+    func init_random() -> void:
+        var rng : = RandomNumberGenerator.new()
+        rng.randomize()
+        self.init(rng.randi_range(1, 5))
+    
+    func keyboard_index() -> int:
+        return 0
+    
+    func question_text() -> String:
+        return str(_v) + " + " + str(_v)
+    
+    func is_answer_correct(v : int, t : String) -> bool:
+        return (v == _v*2)
+
+class ExerciseCompare:
+    var _l : int = 0
+    var _r : int = 0
+    
+    func init(left : int, right : int) -> void:
+        _l = left
+        _r = right
+        
+    func init_random() -> void:
+        var rng : = RandomNumberGenerator.new()
+        rng.randomize()
+        self.init(rng.randi_range(0, 10), rng.randi_range(0, 10))
+    
+    func keyboard_index() -> int:
+        return 1
+    
+    func question_text() -> String:
+        return str(_l) + "  _  " + str(_r)
+    
+    func is_answer_correct(v : int, t : String) -> bool:
+        if _l < _r:
+            return (v == -1)
+        elif _l == _r:
+            return (v == 0)
+        else:
+            return (v == 1)
