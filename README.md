@@ -9,6 +9,7 @@ Mattemonster is a maths app for first graders. Currently it includes the followi
 
 - Friends of ten (0+10, 1+9, ...)
 - Doubles up to 5 (1+1, 2+2, ...)
+- Comparisons up to 10 (1<5, 3=3, ...)
 
 ## License
 
