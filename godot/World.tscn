@@ -19,10 +19,9 @@ font_data = ExtResource( 2 )
 size = 96
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxEmpty" id=6]
+[sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="Animation" id=4]
-resource_name = "right"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
@@ -50,8 +49,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "wrong"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
@@ -156,7 +154,7 @@ margin_top = 679.0
 margin_right = 640.0
 margin_bottom = 983.0
 size_flags_horizontal = 3
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 4 )
 tabs_visible = false
 
 [node name="Keyboard" parent="UI/VBoxContainer/TabContainer" instance=ExtResource( 3 )]
@@ -165,8 +163,8 @@ tabs_visible = false
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/right = SubResource( 4 )
-anims/wrong = SubResource( 5 )
+anims/right = SubResource( 5 )
+anims/wrong = SubResource( 6 )
 
 [node name="RightAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )

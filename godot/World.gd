@@ -23,20 +23,9 @@ func _ready() -> void:
     compareKeyboard.connect("pressed", self, "_on_keypress")
     
 func start_game() -> void:
-    # Create exercises
+    # Create random exercises
     for i in range(10):
         exercises.append(random_exercise_factory())
-
-    # Randomize task order
-    var rng = RandomNumberGenerator.new()
-    rng.randomize()
-    for i in range(1000):
-        var r : int = rng.randi_range(0, len(exercises)-1)
-        var t : int = exercises[r]
-
-        exercises.remove(r)
-        
-        exercises.insert(0, t)
 
     # Start first game
     _start_game()
