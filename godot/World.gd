@@ -59,7 +59,6 @@ func _on_keypress(v : int, t : String) -> void:
         animationPlayer.play("right")
         yield(animationPlayer, "animation_finished")
         if not _try_next_game():
-            print("GAME ENDED")
             emit_signal("game_ended", 0, noOfExercises, wrongAnswers) # seconds, total, wrong
     else:
         wrongAnswers += 1
