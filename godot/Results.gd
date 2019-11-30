@@ -33,14 +33,14 @@ func _update_texts() -> void:
     var answers = _questions + _wrong
     
     if _wrong == 0:                    # All correct
-        $MarginContainer/VBoxContainer/EncouragementLabel.text = "Perfekt!"
+        $MarginContainer/VBoxContainer/EncouragementLabel.text = tr("RESULT_1")
     else:
         var percentage : = (float(_wrong) / float(answers))
         if percentage <= 0.1:    # 90% correct
-            $MarginContainer/VBoxContainer/EncouragementLabel.text = "Superbra!"
+            $MarginContainer/VBoxContainer/EncouragementLabel.text = tr("RESULT_2")
         elif percentage <= 0.4:    # 60% correct
-            $MarginContainer/VBoxContainer/EncouragementLabel.text = "Bra jobbat!"
+            $MarginContainer/VBoxContainer/EncouragementLabel.text = tr("RESULT_3")
         else:    # 40% correct
-            $MarginContainer/VBoxContainer/EncouragementLabel.text = "Nästa gång kan du!"
+            $MarginContainer/VBoxContainer/EncouragementLabel.text = tr("RESULT_4")
 
-    $MarginContainer/VBoxContainer/ResultsLabel.text = str(answers - _wrong) + " av " + str(answers) + " rätt"
+    $MarginContainer/VBoxContainer/ResultsLabel.text = str(answers - _wrong) + " " + tr("RESULT_FROM") + " " + str(answers) + " " + tr("RESULT_RIGHT")

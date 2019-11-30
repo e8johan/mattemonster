@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://localization/mattemonster.sv.translation", "res://localization/mattemonster.en.translation" ]
+
+source_file="res://localization/mattemonster.csv"
+dest_files=[ "res://localization/mattemonster.sv.translation", "res://localization/mattemonster.en.translation" ]
+
+[params]
+
+compress=true
+delimiter=0
