@@ -10,6 +10,5 @@ func _ready() -> void:
 func _on_PlayButton_pressed():
     emit_signal("play")
 
-
 func _on_ExitButton_pressed():
     emit_signal("quit")

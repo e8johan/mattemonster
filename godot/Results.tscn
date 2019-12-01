@@ -74,5 +74,5 @@ margin_bottom = 904.0
 focus_mode = 0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
-text = "Tillbaka"
+text = "VIEW_BACK"
 flat = true

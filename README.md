@@ -11,6 +11,16 @@ Mattemonster is a maths app for first graders. Currently it includes the followi
 - Doubles up to 5 (1+1, 2+2, ...)
 - Comparisons up to 10 (1<5, 3=3, ...)
 
+It is available in Swedish and English, but translations are welcome. 
+
+## Contribute
+
+All contributions are welcome. We use a github workflow based on forks and pull requests. You can read more here: https://reflectoring.io/github-fork-and-pull/ .
+
+### Localization
+
+To maintain your translation, please update the `godot/localization/mattemonster.csv` file with your language. Godot has a great tutorial on the localization topic that you can find here: https://docs.godotengine.org/en/3.1/tutorials/i18n/internationalizing_games.html .
+
 ## License
 
 The Mattemonster is available under the 3-Clause BSD License<br />
