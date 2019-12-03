@@ -10,3 +10,9 @@ VIEW_BACK,Tillbaka,Back
 VIEW_PLAY,Spela,Play
 VIEW_QUIT,Avsluta,Exit
 RESULT_TIME,Tid,Time
+VIEW_EXERCISES,Övningar,Exercises
+VIEW_TENS,Tior,Tens
+VIEW_DOUBLES,Dubbletter,Doubles
+VIEW_COMPARE,Jämför,Compare
+VIEW_NO_OF_EXERCISES,Antal övningar,No of Exercises
+VIEW_SETTINGS,Inställningar,Settings
