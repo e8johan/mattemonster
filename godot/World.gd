@@ -28,8 +28,10 @@ func _ready() -> void:
     
 func start_game() -> void:
     # Create random exercises
+    var rng : = RandomNumberGenerator.new()
+    rng.randomize()
     for i in range(10):
-        exercises.append(random_exercise_factory())
+        exercises.append(random_exercise_factory(rng))
 
     # Start first game
     _start_game()
@@ -95,16 +97,14 @@ func play_wrong() -> void:
 #    func question_text() -> String:
 #    func is_answer_correct(v : int, t : String) -> bool:
 
-func random_exercise_factory() -> Object:
+func random_exercise_factory(rng: RandomNumberGenerator) -> Object:
     var res
-    var rng : = RandomNumberGenerator.new()
-    rng.randomize()
     match rng.randi_range(0,10):
-        0, 1, 2, 3, 4:
+        0, 1, 2, 3, 4, 5, 6:
             res = ExerciseTenFriends.new()
-        5, 6:
+        7, 8:
             res = ExerciseDouble.new()
-        7, 8, 9, 10:
+        9, 10:
             res = ExerciseCompare.new()
     res.init_random()
     return res
