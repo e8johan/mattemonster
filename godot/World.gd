@@ -4,6 +4,8 @@ signal game_ended(seconds, total, wrong)
 
 onready var questionLabel = $UI/VBoxContainer/QuestionLabel
 onready var answerLabel = $UI/VBoxContainer/AnswerLabel
+onready var timeLabel = $UI/VBoxContainer/MarginContainer/HBoxContainer/TimeLabel
+onready var timeTimer = $Timer
 onready var progressLabel = $UI/VBoxContainer/MarginContainer/HBoxContainer/ProgressLabel
 onready var numberKeyboard = $UI/VBoxContainer/TabContainer/Keyboard
 onready var compareKeyboard = $UI/VBoxContainer/TabContainer/CompareKeyboard
@@ -13,6 +15,8 @@ onready var animationPlayer = $AnimationPlayer
 var exercise : Object
 var noOfExercises: int = 0
 var wrongAnswers : int = 0
+
+var timeStart: int = 0
 
 var exercises = []
 
@@ -33,6 +37,9 @@ func start_game() -> void:
 func _start_game() -> void:
     noOfExercises = len(exercises)
     wrongAnswers = 0
+    timeStart = OS.get_unix_time()
+    _update_time_label()
+    timeTimer.start()
     _try_next_game()
 
 func _try_next_game() -> bool:
@@ -46,7 +53,7 @@ func _try_next_game() -> bool:
         return true
 
 func _prepare_task(e) -> void:
-    progressLabel.text = str(noOfExercises - len(exercises) - 1) + " / " + str(noOfExercises)
+    progressLabel.text = str(noOfExercises - len(exercises)) + " / " + str(noOfExercises)
     answerLabel.text = "?"
     
     keyboardSelector.set_current_tab(e.keyboard_index())
@@ -59,17 +66,27 @@ func _on_keypress(v : int, t : String) -> void:
         animationPlayer.play("right")
         yield(animationPlayer, "animation_finished")
         if not _try_next_game():
-            emit_signal("game_ended", 0, noOfExercises, wrongAnswers) # seconds, total, wrong
+            timeTimer.stop()
+            emit_signal("game_ended", OS.get_unix_time() - timeStart, noOfExercises, wrongAnswers) # seconds, total, wrong
     else:
         wrongAnswers += 1
         animationPlayer.play("wrong")
         yield(animationPlayer, "animation_finished")
         answerLabel.text = "?"
 
-func play_right():
+func _on_Timer_timeout() -> void:
+    _update_time_label()
+
+func _update_time_label() -> void:
+    var elapsed : int = OS.get_unix_time() - timeStart
+    var minutes : int = elapsed / 60
+    var seconds : int = elapsed % 60
+    timeLabel.text = "%02d:%02d" % [minutes, seconds]
+    
+func play_right() -> void:
 	$RightAudioPlayer.play()
 	
-func play_wrong():
+func play_wrong() -> void:
 	$WrongAudioPlayer.play()
 
 #interface Exercise:

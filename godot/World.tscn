@@ -110,21 +110,28 @@ margin_right = 620.0
 margin_bottom = 45.0
 
 [node name="ProgressLabel" type="Label" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_right = 298.0
+margin_right = 152.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "5 / 12"
+align = 1
 valign = 1
 
+[node name="Control" type="Control" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
+margin_left = 156.0
+margin_right = 308.0
+margin_bottom = 45.0
+size_flags_horizontal = 3
+
 [node name="TimeLabel" type="Label" parent="UI/VBoxContainer/MarginContainer/HBoxContainer"]
-margin_left = 302.0
-margin_right = 600.0
+margin_left = 312.0
+margin_right = 599.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "VIEW_NO_TIME"
-align = 2
+align = 1
 valign = 1
 
 [node name="QuestionLabel" type="Label" parent="UI/VBoxContainer"]
@@ -171,3 +178,7 @@ stream = ExtResource( 5 )
 
 [node name="WrongAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.25
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

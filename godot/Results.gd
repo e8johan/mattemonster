@@ -4,9 +4,11 @@ signal back
 
 var questions : int = 0 setget _set_questions, _get_questions
 var wrong : int = 0 setget _set_wrong, _get_wrong
+var elapsed_seconds : int = 0 setget _set_elapsed_seconds, _get_elapsed_seconds
 
 var _questions : int = 0
 var _wrong : int = 0
+var _elapsed_seconds : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,6 +31,13 @@ func _set_wrong(w : int) -> void:
 func _get_wrong() -> int:
     return _wrong
     
+func _set_elapsed_seconds(es : int) -> void:
+    _elapsed_seconds = es
+    _update_texts()
+
+func _get_elapsed_seconds() -> int:
+    return _elapsed_seconds
+    
 func _update_texts() -> void:
     var answers = _questions + _wrong
     
@@ -44,3 +53,7 @@ func _update_texts() -> void:
             $MarginContainer/VBoxContainer/EncouragementLabel.text = tr("RESULT_4")
 
     $MarginContainer/VBoxContainer/ResultsLabel.text = str(answers - _wrong) + " " + tr("RESULT_FROM") + " " + str(answers) + " " + tr("RESULT_RIGHT")
+    
+    var minutes : int = _elapsed_seconds / 60
+    var seconds : int = _elapsed_seconds % 60
+    $MarginContainer/VBoxContainer/TimeLabel.text = tr("RESULT_TIME") + ": %02d:%02d" % [minutes, seconds]

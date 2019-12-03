@@ -11,9 +11,11 @@ func _ready() -> void:
     
     _show_view(MENU)
 
-func _end_game(seconds : int, total : int, wrong : int) -> void:
+func _end_game(elapsedSeconds : int, total : int, wrong : int) -> void:
     $Results.questions = total
     $Results.wrong = wrong
+    $Results.elapsed_seconds = elapsedSeconds
+
     _show_view(RESULT)
 
 func _back_to_menu() -> void:
