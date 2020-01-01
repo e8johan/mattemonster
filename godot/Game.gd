@@ -30,7 +30,8 @@ func _settings() -> void:
     _show_view(SETTINGS)
 
 func _quit() -> void:
-    get_tree().quit()
+    if $Menu.visible == true:
+        get_tree().quit()
 
 func _show_view(v) -> void:
     $GameView.visible = false

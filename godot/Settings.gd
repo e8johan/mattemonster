@@ -32,6 +32,10 @@ func _ready() -> void:
     doublesToggle.pressed = exercise_doubles
     compareToggle.pressed = exercise_compare
 
+func _notification(what: int) -> void:
+    if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST or what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+        _on_BackButton_pressed()
+
 func _set_no_of_exercises(noe : int) -> void:
     if noe < 1:
         noe = 1

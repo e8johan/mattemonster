@@ -14,6 +14,11 @@ var _elapsed_seconds : int = 0
 func _ready():
     $MarginContainer/VBoxContainer/BackButton.connect("pressed", self, "_on_back")
     
+
+func _notification(what: int) -> void:
+    if what == MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST or what == MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+        _on_back()
+    
 func _on_back() -> void:
     emit_signal("back")
 
