@@ -26,12 +26,12 @@ func _ready() -> void:
     numberKeyboard.connect("pressed", self, "_on_keypress")
     compareKeyboard.connect("pressed", self, "_on_keypress")
     
-func start_game() -> void:
+func start_game(no_of_exercises: int, es: Dictionary) -> void:
     # Create random exercises
     var rng : = RandomNumberGenerator.new()
     rng.randomize()
-    for i in range(10):
-        exercises.append(random_exercise_factory(rng))
+    for i in range(no_of_exercises):
+        exercises.append(random_exercise_factory(rng, es))
 
     # Start first game
     _start_game()
@@ -97,15 +97,34 @@ func play_wrong() -> void:
 #    func question_text() -> String:
 #    func is_answer_correct(v : int, t : String) -> bool:
 
-func random_exercise_factory(rng: RandomNumberGenerator) -> Object:
-    var res
-    match rng.randi_range(0,10):
-        0, 1, 2, 3, 4, 5, 6:
+func random_exercise_factory(rng: RandomNumberGenerator, es) -> Object:
+    var values = 0
+    if es.has('tens') and es['tens']:
+        values += 5
+    if es.has('doubles') and es['doubles']:
+        values += 3
+    if es.has('compare') and es['compare']:
+        values += 3
+    
+    var res = null
+    var value = rng.randi_range(0,values)
+    
+    if es.has('tens') and es['tens']:
+        if value <= 5:
             res = ExerciseTenFriends.new()
-        7, 8:
+        else:
+            value -= 5
+            
+    if es.has('doubles') and es['doubles'] and res == null:
+        if value <= 3:
             res = ExerciseDouble.new()
-        9, 10:
-            res = ExerciseCompare.new()
+        else:
+            value -= 3
+    
+    # Last case    
+    if res == null:
+        res = ExerciseCompare.new()
+    
     res.init_random()
     return res
 

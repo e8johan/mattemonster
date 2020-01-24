@@ -9,7 +9,7 @@ size = 80
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 72
+size = 64
 font_data = ExtResource( 2 )
 
 [node name="Menu" type="Control"]
@@ -31,7 +31,7 @@ margin_right = 640.0
 margin_bottom = 944.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 40
+custom_constants/separation = 20
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 640.0
@@ -42,34 +42,46 @@ align = 1
 valign = 1
 
 [node name="Logo" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-margin_top = 139.0
+margin_top = 119.0
 margin_right = 640.0
-margin_bottom = 439.0
+margin_bottom = 419.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 479.0
+margin_top = 439.0
 margin_right = 640.0
-margin_bottom = 574.0
+margin_bottom = 524.0
 focus_mode = 0
 custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
 text = "VIEW_PLAY"
 flat = true
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
-margin_top = 614.0
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 544.0
 margin_right = 640.0
-margin_bottom = 709.0
+margin_bottom = 629.0
 focus_mode = 0
 custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
+text = "VIEW_SETTINGS"
+flat = true
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 649.0
+margin_right = 640.0
+margin_bottom = 734.0
+focus_mode = 0
+custom_fonts/font = SubResource( 2 )
+enabled_focus_mode = 0
 text = "VIEW_QUIT"
 flat = true
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
-margin_top = 749.0
+margin_top = 754.0
 margin_right = 640.0
-margin_bottom = 753.0
+margin_bottom = 773.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -82,4 +94,5 @@ Font Copyright(C)2011 The Montserrat Project Authors"
 align = 1
 valign = 2
 [connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

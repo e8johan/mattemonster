@@ -4,9 +4,15 @@ RESULT_2,Superbra!,Great!
 RESULT_3,Bra jobbat!,Good work!
 RESULT_4,Nästa gång kan du!,Practice more!
 RESULT_FROM,av,of
-RESULT_RIGHT,rätt,
+RESULT_RIGHT,rätt,right
 VIEW_NO_TIME,ingen tid,no time
 VIEW_BACK,Tillbaka,Back
 VIEW_PLAY,Spela,Play
 VIEW_QUIT,Avsluta,Exit
 RESULT_TIME,Tid,Time
+VIEW_EXERCISES,Övningar,Exercises
+VIEW_TENS,Tior,Tens
+VIEW_DOUBLES,Dubbletter,Doubles
+VIEW_COMPARE,Jämför,Compare
+VIEW_NO_OF_EXERCISES,Antal övningar,No of Exercises
+VIEW_SETTINGS,Inställningar,Settings
